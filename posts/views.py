@@ -129,9 +129,12 @@ def profile_follow(request, username):
         user = request.user.id
         author = User.objects.get(username=username)
         follower_check = Follow.objects.filter(user=user, author=author.id).count()
-        if follower_check == 0:
+        if not follower_check == 1: #исправил на if not  == 1, но почему так лучше? Ведь прежний вариант аналогичен этому.Спасибо
             Follow.objects.create(author=author, user=request.user)
         return redirect('profile', username=username)
+    else:
+        return redirect('profile', username=username)
+
 
 @login_required
 def profile_unfollow(request, username):
