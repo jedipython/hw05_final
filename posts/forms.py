@@ -6,7 +6,7 @@ from .models import Group, Post, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('group', 'text', 'image')
+        fields = ('group', 'title', 'text', 'image')
         required = {'group': False,}
 
 class CommentsForm(forms.ModelForm):

@@ -69,7 +69,7 @@ class ImageTests(TestCase):
 
         def test_image_post(self):
                 with open('media/posts/starlink4_website_Qhna5v6.jpg', 'rb') as fp:
-                        self.client.post('/new/', {'text': 'test post with image oh-ye', 'image': fp, 'author': 'agent007'})
+                        self.client.post('/new/', {'title': 'hello post', 'text': 'test post with image oh-ye', 'image': fp, 'author': 'agent007'})
                 response = self.client.get('/agent007/1/')
                 self.assertIn('<img', response.content.decode())
                 time.sleep(21)

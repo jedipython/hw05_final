@@ -33,6 +33,7 @@ def new_post(request):
             post.pub_date = datetime.datetime.now()
             post.group = form.cleaned_data['group']
             post.text = form.cleaned_data['text']
+            post.title = form.cleaned_data['title']
             post.save()
             return redirect('/')
     else:
@@ -110,7 +111,9 @@ def add_comment(request, username, post_id):
             return redirect('post', username=post.author, post_id=post_id)
         else:
             form = CommentsForm()
-        return render(request, "post.html", {'form': form, 'post':post})
+        
+    else:
+        return redirect('post', username=username, post_id=post_id)
     return render(request, "post.html", {'form': form, 'post':post})
 
 @login_required

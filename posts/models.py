@@ -11,6 +11,7 @@ class Group(models.Model):
         return self.title
 
 class Post(models.Model):
+    title = models.CharField(max_length=200)
     text = models.TextField()
     pub_date = models.DateTimeField("date published", auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="post_author")

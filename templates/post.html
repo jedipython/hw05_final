@@ -30,6 +30,21 @@
                                             Записей: {{ amount_posts }}
                                         </div>
                                 </li>
+                                <li class="list-group-item">
+                                {% if not user == user_profile %}
+                                        {% if following %}
+                                        <a class="btn btn-lg btn-light" 
+                                                href="{% url 'profile_unfollow' user_profile.username %}" role="button"> 
+                                                Отписаться 
+                                        </a> 
+                                        {% else %}
+                                        <a class="btn btn-lg btn-primary" 
+                                                href="{% url 'profile_follow' user_profile.username %}" role="button">
+                                        Подписаться 
+                                        </a>
+                                        {% endif %}
+                                {% endif %}
+                                    </li>
                         </ul>
                 </div>
         </div>
@@ -47,7 +62,7 @@
                                         <!-- Ссылка на страницу автора в атрибуте href; username автора в тексте ссылки -->
                                         <a href="/{{ user_profile }}/"><strong class="d-block text-gray-dark">@{{ user_profile }}</strong></a>
                                         <!-- Текст поста -->
-                                        {{ post }}
+                                        {{ post|linebreaksbr }}
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group ">
